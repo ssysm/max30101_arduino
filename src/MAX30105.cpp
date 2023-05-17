@@ -698,6 +698,15 @@ uint16_t MAX30105::check(void)
   return (numberOfSamples); //Let the world know how much new data we found
 }
 
+MAX30105::ledStruct_t MAX30105::getLeds(void){
+  if (safeCheck(20)){
+    led.green = sense.green[sense.head];
+    led.red = sense.red[sense.head];
+    led.IR = sense.IR[sense.head];
+  }
+  return led;
+}
+
 //Check for new data but give up after a certain amount of time
 //Returns true if new data was found
 //Returns false if new data was not found
